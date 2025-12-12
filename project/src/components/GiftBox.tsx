@@ -16,24 +16,33 @@ function GiftBox({ onOpened }: GiftBoxProps) {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center animate-fadeIn">
-      <div className="text-center">
+    <div
+      className="min-h-screen flex items-center justify-center animate-fadeIn relative"
+      style={{
+        backgroundImage: 'url(https://images.pexels.com/photos/87651/earth-blue-planet-globe-planet-87651.jpeg?auto=compress&cs=tinysrgb&w=1200)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed',
+      }}
+    >
+      <div className="absolute inset-0 bg-black/40" />
+      <div className="text-center z-10 relative">
         {!isOpened ? (
           <>
             <div
               onClick={handleClick}
-              className="cursor-pointer transform hover:scale-110 transition-transform duration-300"
+              className="cursor-pointer transform hover:scale-110 transition-transform duration-300 mb-8"
             >
-              <Gift className="w-48 h-48 text-red-500 mx-auto mb-8 animate-wiggle" />
+              <Gift className="w-40 h-40 text-yellow-300 mx-auto drop-shadow-lg" />
             </div>
-            <p className="text-3xl text-white font-bold animate-pulse">
+            <p className="text-2xl md:text-3xl text-white font-bold drop-shadow-md">
               Click the gift to open! 🎁
             </p>
           </>
         ) : (
           <div className="animate-giftOpen">
-            <div className="text-9xl mb-8">🎁</div>
-            <div className="text-6xl animate-bounce">
+            <div className="text-8xl mb-8">🎁</div>
+            <div className="text-5xl md:text-6xl space-x-4">
               ✨ 🎉 🎂 🎈 ✨
             </div>
           </div>

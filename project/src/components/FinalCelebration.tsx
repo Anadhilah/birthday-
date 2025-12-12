@@ -25,48 +25,48 @@ function FinalCelebration({ userName }: FinalCelebrationProps) {
     <div
       className="min-h-screen flex items-center justify-center relative overflow-hidden"
       style={{
-        backgroundImage: 'url(https://images.pexels.com/photos/355465/pexels-photo-355465.jpeg?auto=compress&cs=tinysrgb&w=1200)',
+        backgroundImage: 'url(https://images.pexels.com/photos/87651/earth-blue-planet-globe-planet-87651.jpeg?auto=compress&cs=tinysrgb&w=1200)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed',
       }}
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-950/70 to-blue-900/70" />
+      <div className="absolute inset-0 bg-black/40" />
       <FloatingBalloons />
       {showFireworks && <Fireworks />}
 
-      <div className="text-center z-10 animate-fadeIn relative">
-        <div className="mb-8">
-          <h1 className="text-6xl md:text-8xl font-bold text-white mb-4 animate-bounce">
+      <div className="text-center z-10 animate-fadeIn relative px-4">
+        <div className="mb-10">
+          <h1 className="text-5xl md:text-6xl font-bold text-white mb-4 drop-shadow-lg">
             HAPPY BIRTHDAY
           </h1>
-          <h2 className="text-4xl md:text-6xl font-bold text-blue-200 animate-pulse">
+          <h2 className="text-3xl md:text-4xl font-bold text-yellow-300 drop-shadow-md">
             {userName}
           </h2>
         </div>
 
-        <div className="text-7xl md:text-9xl space-x-4 animate-wiggle">
+        <div className="text-6xl md:text-7xl space-x-3 mb-10">
           🎂 🎈 🎁 🎊 ✨
         </div>
 
-        <div className="mt-12 bg-white/95 backdrop-blur-md rounded-3xl p-8 max-w-2xl mx-4 shadow-2xl">
-          <p className="text-2xl md:text-3xl font-semibold text-gray-800">
+        <div className="bg-white/95 backdrop-blur-md rounded-2xl p-8 max-w-2xl mx-auto shadow-2xl mb-10">
+          <p className="text-xl md:text-2xl font-semibold text-gray-800">
             May this year bring you endless joy, success, and amazing adventures
           </p>
         </div>
 
-        <div className="flex gap-4 justify-center flex-wrap mt-8">
+        <div className="flex gap-4 justify-center flex-wrap">
           <button
             onClick={() => setShowFireworks(!showFireworks)}
-            className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-8 py-4 rounded-full font-bold hover:scale-105 transition-transform shadow-lg"
+            className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-8 py-3 rounded-full font-semibold hover:scale-105 transition-all shadow-lg"
           >
-            {showFireworks ? 'Stop Fireworks' : 'Start Fireworks'}
+            {showFireworks ? '🎆 Stop Fireworks' : '🎇 Start Fireworks'}
           </button>
           <button
             onClick={() => setShowSlideshow(true)}
-            className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-8 py-4 rounded-full font-bold hover:scale-105 transition-transform shadow-lg"
+            className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-8 py-3 rounded-full font-semibold hover:scale-105 transition-all shadow-lg"
           >
-            View Slideshow
+            📷 View Photos
           </button>
         </div>
       </div>

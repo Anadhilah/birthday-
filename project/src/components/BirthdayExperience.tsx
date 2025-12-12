@@ -10,7 +10,7 @@ interface BirthdayExperienceProps {
 }
 
 function BirthdayExperience({ userName }: BirthdayExperienceProps) {
-  const [stage, setStage] = useState<'intro' | 'gift' | 'feedback' | 'messages' | 'finale'>('intro');
+  const [stage, setStage] = useState<'intro' | 'gift' | 'messages' | 'feedback' | 'finale'>('intro');
   const [showConfetti, setShowConfetti] = useState(true);
 
   useEffect(() => {
@@ -21,32 +21,41 @@ function BirthdayExperience({ userName }: BirthdayExperienceProps) {
   }, []);
 
   const handleGiftOpened = () => {
-    setStage('feedback');
+    setStage('messages');
   };
 
   const handleFeedbackGiven = () => {
     setShowConfetti(false);
     setTimeout(() => {
-      setStage('messages');
+      setStage('finale');
     }, 1000);
   };
 
   const handleMessagesComplete = () => {
-    setStage('finale');
+    setStage('feedback');
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-yellow-300 via-pink-300 to-purple-400 relative overflow-hidden">
+    <div
+      className="min-h-screen relative overflow-hidden"
+      style={{
+        backgroundImage: 'url(https://images.pexels.com/photos/87651/earth-blue-planet-globe-planet-87651.jpeg?auto=compress&cs=tinysrgb&w=1200)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed',
+      }}
+    >
+      <div className="absolute inset-0 bg-black/40" />
       {showConfetti && <Confetti />}
 
       <div className="relative z-10">
         {stage === 'intro' && (
           <div className="min-h-screen flex items-center justify-center animate-fadeIn">
-            <div className="text-center">
-              <h1 className="text-6xl md:text-8xl font-bold text-white mb-4 animate-bounce">
+            <div className="text-center px-4">
+              <h1 className="text-6xl md:text-7xl font-bold text-white mb-6 drop-shadow-lg">
                 🎉 SURPRISE! 🎉
               </h1>
-              <p className="text-3xl md:text-4xl text-white font-semibold">
+              <p className="text-2xl md:text-3xl text-white font-semibold drop-shadow-md">
                 Happy Birthday, {userName}! 🎂
               </p>
             </div>
@@ -57,12 +66,12 @@ function BirthdayExperience({ userName }: BirthdayExperienceProps) {
           <GiftBox onOpened={handleGiftOpened} />
         )}
 
-        {stage === 'feedback' && (
-          <FeedbackSection onComplete={handleFeedbackGiven} />
-        )}
-
         {stage === 'messages' && (
           <MessageCarousel onComplete={handleMessagesComplete} />
+        )}
+
+        {stage === 'feedback' && (
+          <FeedbackSection onComplete={handleFeedbackGiven} />
         )}
 
         {stage === 'finale' && (

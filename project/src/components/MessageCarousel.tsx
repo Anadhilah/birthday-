@@ -54,28 +54,37 @@ function MessageCarousel({ onComplete }: MessageCarouselProps) {
   }, [currentIndex]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
-      <div className="max-w-4xl w-full">
-        <div className="bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl p-12 animate-slideIn">
+    <div
+      className="min-h-screen flex items-center justify-center p-4 relative"
+      style={{
+        backgroundImage: 'url(https://images.pexels.com/photos/87651/earth-blue-planet-globe-planet-87651.jpeg?auto=compress&cs=tinysrgb&w=1200)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed',
+      }}
+    >
+      <div className="absolute inset-0 bg-black/40" />
+      <div className="max-w-2xl w-full relative z-10">
+        <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-10 md:p-12 animate-slideIn">
           <div className="text-center mb-8">
-            <div className="text-9xl mb-6 animate-bounce">
+            <div className="text-8xl md:text-9xl mb-6">
               {messages[currentIndex].emoji}
             </div>
-            <p className="text-3xl md:text-4xl font-bold text-gray-800 leading-relaxed">
+            <p className="text-2xl md:text-3xl font-semibold text-gray-800 leading-relaxed">
               {messages[currentIndex].text}
             </p>
           </div>
 
           <div className="flex justify-between items-center mt-12">
-            <div className="text-gray-500">
+            <div className="text-gray-500 font-medium text-sm">
               {currentIndex + 1} / {messages.length}
             </div>
             <button
               onClick={handleNext}
-              className="bg-gradient-to-r from-pink-500 to-purple-500 text-white px-8 py-4 rounded-full font-bold flex items-center gap-2 hover:scale-105 transition-transform shadow-lg"
+              className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 md:px-8 py-3 rounded-full font-semibold flex items-center gap-2 hover:from-blue-700 hover:to-blue-800 transition-all hover:scale-105 shadow-lg"
             >
-              {currentIndex < messages.length - 1 ? 'Next' : 'Continue to Finale'}
-              <ChevronRight className="w-6 h-6" />
+              {currentIndex < messages.length - 1 ? 'Next' : 'Continue'}
+              <ChevronRight className="w-5 h-5" />
             </button>
           </div>
         </div>

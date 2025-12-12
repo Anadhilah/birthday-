@@ -7,28 +7,28 @@ interface SlideshowProps {
 
 const images = [
   {
-    url: 'https://images.pexels.com/photos/1699159/pexels-photo-1699159.jpeg?auto=compress&cs=tinysrgb&w=800',
-    caption: 'Celebrating special moments',
+    url: '/images/awwnn.jpg',
+    caption: 'Who did you want to beat🤣🤣🤣',
   },
   {
-    url: 'https://images.pexels.com/photos/3938022/pexels-photo-3938022.jpeg?auto=compress&cs=tinysrgb&w=800',
-    caption: 'Filled with joy and laughter',
+    url: '/images/birthday.jpg',
+    caption: 'Awnnn mommys boy🤧🤧🤧',
   },
   {
-    url: 'https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?auto=compress&cs=tinysrgb&w=800',
-    caption: 'Growing stronger each year',
+    url: '/images/chelsea.jpg',
+    caption: 'Number one Chelsea fan',
   },
   {
-    url: 'https://images.pexels.com/photos/919734/pexels-photo-919734.jpeg?auto=compress&cs=tinysrgb&w=800',
-    caption: 'Sharing happiness with loved ones',
+    url: '/images/kid.jpg',
+    caption: 'Soooo cute and guy guy ',
   },
   {
-    url: 'https://images.pexels.com/photos/1181270/pexels-photo-1181270.jpeg?auto=compress&cs=tinysrgb&w=800',
-    caption: 'Creating unforgettable memories',
+    url: '/images/now.jpg',
+    caption: 'One and only Dr Pookie😏😏',
   },
   {
-    url: 'https://images.pexels.com/photos/3807517/pexels-photo-3807517.jpeg?auto=compress&cs=tinysrgb&w=800',
-    caption: 'Embracing every beautiful moment',
+    url: '/images/hehe.jpg',
+    caption: 'And finally 🤧🤧🤧',
   },
 ];
 
@@ -62,40 +62,51 @@ function ImageSlideshow({ onComplete }: SlideshowProps) {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 relative">
-      <div className="w-full max-w-4xl relative">
-        <div className="relative overflow-hidden rounded-3xl shadow-2xl bg-black">
-          <img
-            src={images[currentIndex].url}
-            alt={images[currentIndex].caption}
-            className="w-full h-96 md:h-screen object-cover animate-fadeIn"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-8">
+    <div
+      className="min-h-screen flex items-center justify-center p-4 relative"
+      style={{
+        backgroundImage: 'url(https://images.pexels.com/photos/87651/earth-blue-planet-globe-planet-87651.jpeg?auto=compress&cs=tinysrgb&w=1200)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed',
+      }}
+    >
+      <div className="absolute inset-0 bg-black/40" />
+      <div className="w-full max-w-5xl relative z-10 px-2">
+        <div className="relative overflow-hidden rounded-2xl shadow-2xl bg-black">
+          <div className="bg-black flex items-center justify-center" style={{ minHeight: '500px' }}>
+            <img
+              src={images[currentIndex].url}
+              alt={images[currentIndex].caption}
+              className="max-w-full max-h-96 object-contain animate-fadeIn"
+            />
+          </div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-6">
             <div className="text-white">
-              <p className="text-2xl md:text-4xl font-semibold">
+              <p className="text-lg md:text-2xl font-semibold drop-shadow-lg">
                 {images[currentIndex].caption}
               </p>
             </div>
           </div>
         </div>
 
-        <div className="flex items-center justify-between mt-8">
+        <div className="flex items-center justify-between mt-8 gap-4">
           <button
             onClick={handlePrev}
-            className="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-3 rounded-full hover:from-blue-700 hover:to-blue-800 transition-all shadow-lg hover:scale-110"
+            className="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-3 rounded-full hover:from-blue-700 hover:to-blue-800 transition-all shadow-lg hover:scale-110 flex-shrink-0"
           >
             <ChevronLeft className="w-6 h-6" />
           </button>
 
-          <div className="flex gap-2 justify-center flex-1 px-4">
+          <div className="flex gap-2 justify-center flex-1">
             {images.map((_, index) => (
               <button
                 key={index}
                 onClick={() => handleDotClick(index)}
-                className={`h-3 rounded-full transition-all ${
+                className={`h-2 rounded-full transition-all ${
                   index === currentIndex
-                    ? 'bg-blue-600 w-8'
-                    : 'bg-gray-400 w-3 hover:bg-gray-500'
+                    ? 'bg-blue-400 w-8'
+                    : 'bg-gray-400 w-2 hover:bg-gray-500'
                 }`}
               />
             ))}
@@ -103,22 +114,22 @@ function ImageSlideshow({ onComplete }: SlideshowProps) {
 
           <button
             onClick={handleNext}
-            className="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-3 rounded-full hover:from-blue-700 hover:to-blue-800 transition-all shadow-lg hover:scale-110"
+            className="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-3 rounded-full hover:from-blue-700 hover:to-blue-800 transition-all shadow-lg hover:scale-110 flex-shrink-0"
           >
             <ChevronRight className="w-6 h-6" />
           </button>
         </div>
 
-        <div className="mt-8 text-center">
-          <p className="text-gray-600 mb-4">
+        <div className="mt-6 text-center">
+          <p className="text-white/80 text-sm mb-4">
             {currentIndex + 1} / {images.length}
           </p>
           {onComplete && (
             <button
               onClick={onComplete}
-              className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-8 py-3 rounded-full font-bold hover:from-blue-700 hover:to-blue-800 transition-all shadow-lg"
+              className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-8 py-3 rounded-full font-semibold hover:from-blue-700 hover:to-blue-800 transition-all shadow-lg hover:scale-105"
             >
-              Close Slideshow
+              Continue
             </button>
           )}
         </div>
