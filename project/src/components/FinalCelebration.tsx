@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Fireworks from './Fireworks';
 import FloatingBalloons from './FloatingBalloons';
 import ImageSlideshow from './ImageSlideshow';
+import FallingHearts from './FallingHearts';
 
 interface FinalCelebrationProps {
   userName: string;
@@ -34,6 +35,7 @@ function FinalCelebration({ userName }: FinalCelebrationProps) {
       <div className="absolute inset-0 bg-black/40" />
       <FloatingBalloons />
       {showFireworks && <Fireworks />}
+      <FallingHearts />
 
       <div className="text-center z-10 animate-fadeIn relative px-4">
         <div className="mb-10">
@@ -51,7 +53,8 @@ function FinalCelebration({ userName }: FinalCelebrationProps) {
 
         <div className="bg-white/95 backdrop-blur-md rounded-2xl p-8 max-w-2xl mx-auto shadow-2xl mb-10">
           <p className="text-xl md:text-2xl font-semibold text-gray-800">
-            May this year bring you endless joy, success, and amazing adventures
+            May this year bring you endless joy, success, and amazing adventures with Love from you know who
+            🤧🤧
           </p>
         </div>
 

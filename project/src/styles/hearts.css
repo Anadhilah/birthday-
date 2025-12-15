@@ -1,0 +1,18 @@
+@keyframes heartFall {
+  0% {
+    transform: translateY(-100px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.falling-heart {
+  position: fixed;
+  top: -50px;
+  pointer-events: none;
+  animation: heartFall linear forwards;
+  z-index: 40;
+}

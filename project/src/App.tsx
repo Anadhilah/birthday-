@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import LoginScreen from './components/LoginScreen';
 import BirthdayExperience from './components/BirthdayExperience';
+import BackgroundMusic from './components/BackgroundMusic';
 
 function App() {
   const [isUnlocked, setIsUnlocked] = useState(false);
@@ -13,6 +14,7 @@ function App() {
 
   return (
     <div className="min-h-screen">
+      <BackgroundMusic autoPlay={true} />
       {!isUnlocked ? (
         <LoginScreen onUnlock={handleUnlock} />
       ) : (
