@@ -55,7 +55,7 @@ function BackgroundMusic({ autoPlay = true }: BackgroundMusicProps) {
         onError={handleError}
       >
         <source 
-          src="/public/song.mp3" 
+          src="/song.mp3" 
           type="audio/mpeg" 
         />
         Your browser does not support the audio element.
