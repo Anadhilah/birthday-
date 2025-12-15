@@ -7,27 +7,27 @@ interface SlideshowProps {
 
 const images = [
   {
-    url: '/images/awwnn.jpg',
+    url: '/public/awwnn.jpg',
     caption: 'Who did you want to beat🤣🤣🤣',
   },
   {
-    url: '/images/birthday.jpg',
+    url: '/public/birthday.jpg',
     caption: 'Awnnn mommys boy🤧🤧🤧',
   },
   {
-    url: '/images/chelsea.jpg',
+    url: '/public/chelsea.jpg',
     caption: 'Number one Chelsea fan',
   },
   {
-    url: '/images/kid.jpg',
+    url: '/public/kid.jpg',
     caption: 'Soooo cute and guy guy ',
   },
   {
-    url: '/images/now.jpg',
+    url: '/public/now.jpg',
     caption: 'One and only Dr Pookie😏😏',
   },
   {
-    url: '/images/hehe.jpg',
+    url: '/public/hehe.jpg',
     caption: 'And finally 🤧🤧🤧',
   },
 ];
