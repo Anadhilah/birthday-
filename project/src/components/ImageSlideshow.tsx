@@ -36,6 +36,25 @@ function ImageSlideshow({ onComplete }: SlideshowProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [autoPlay, setAutoPlay] = useState(true);
 
+  const [images, setImages] = useState<ImageData[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const { data, error } = await supabase.from('Images').select('url, caption');
+        if (error) throw error;
+        setImages(data || []);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Failed to load images');
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchImages();
+  }, []);
+
   useEffect(() => {
     if (!autoPlay) return;
 
