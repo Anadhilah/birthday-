@@ -1,33 +1,39 @@
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { supabase } from '../lib/supabase';
 
 interface SlideshowProps {
   onComplete?: () => void;
 }
 
-const images = [
+interface ImageData {
+  url: string;
+  caption: string;
+}
+
+const defaultImages: ImageData[] = [
   {
-    url: '/public/awwnn.jpg',
+    url: '/awwnn.jpg',
     caption: 'Who did you want to beat🤣🤣🤣',
   },
   {
-    url: '/public/birthday.jpg',
+    url: '/birthday.jpg',
     caption: 'Awnnn mommys boy🤧🤧🤧',
   },
   {
-    url: '/public/chelsea.jpg',
+    url: '/chelsea.jpg',
     caption: 'Number one Chelsea fan',
   },
   {
-    url: '/public/kid.jpg',
+    url: '/kid.jpg',
     caption: 'Soooo cute and guy guy ',
   },
   {
-    url: '/public/now.jpg',
+    url: '/now.jpg',
     caption: 'One and only Dr Pookie😏😏',
   },
   {
-    url: '/public/hehe.jpg',
+    url: '/hehe.jpg',
     caption: 'And finally 🤧🤧🤧',
   },
 ];
@@ -36,7 +42,7 @@ function ImageSlideshow({ onComplete }: SlideshowProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [autoPlay, setAutoPlay] = useState(true);
 
-  const [images, setImages] = useState<ImageData[]>([]);
+  const [images, setImages] = useState<ImageData[]>(defaultImages);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -45,7 +51,7 @@ function ImageSlideshow({ onComplete }: SlideshowProps) {
       try {
         const { data, error } = await supabase.from('Images').select('url, caption');
         if (error) throw error;
-        setImages(data || []);
+        setImages(data || defaultImages);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to load images');
       } finally {
@@ -56,21 +62,23 @@ function ImageSlideshow({ onComplete }: SlideshowProps) {
   }, []);
 
   useEffect(() => {
-    if (!autoPlay) return;
+    if (!autoPlay || images.length === 0) return;
 
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % images.length);
     }, 4000);
 
     return () => clearInterval(timer);
-  }, [autoPlay]);
+  }, [autoPlay, images.length]);
 
   const handlePrev = () => {
+    if (images.length === 0) return;
     setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
     setAutoPlay(false);
   };
 
   const handleNext = () => {
+    if (images.length === 0) return;
     setCurrentIndex((prev) => (prev + 1) % images.length);
     setAutoPlay(false);
   };
@@ -79,6 +87,14 @@ function ImageSlideshow({ onComplete }: SlideshowProps) {
     setCurrentIndex(index);
     setAutoPlay(false);
   };
+
+  if (images.length === 0) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-white">No images available</p>
+      </div>
+    );
+  }
 
   return (
     <div
@@ -118,7 +134,7 @@ function ImageSlideshow({ onComplete }: SlideshowProps) {
           </button>
 
           <div className="flex gap-2 justify-center flex-1">
-            {images.map((_, index) => (
+            {images.map((_: ImageData, index: number) => (
               <button
                 key={index}
                 onClick={() => handleDotClick(index)}
