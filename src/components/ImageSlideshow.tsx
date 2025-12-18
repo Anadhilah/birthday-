@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { supabase } from '../lib/supabase';
 
 interface SlideshowProps {
   onComplete?: () => void;
@@ -43,23 +42,8 @@ function ImageSlideshow({ onComplete }: SlideshowProps) {
   const [autoPlay, setAutoPlay] = useState(true);
 
   const [images, setImages] = useState<ImageData[]>(defaultImages);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchImages = async () => {
-      try {
-        const { data, error } = await supabase.from('Images').select('url, caption');
-        if (error) throw error;
-        setImages(data || defaultImages);
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to load images');
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchImages();
-  }, []);
 
   useEffect(() => {
     if (!autoPlay || images.length === 0) return;
