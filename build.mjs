@@ -1,8 +1,6 @@
-import { build } from 'vite';
+const vite = require('vite');
 
-try {
-  await build();
-} catch (error) {
+vite.build().catch(error => {
   console.error(error);
   process.exit(1);
-}
+});
